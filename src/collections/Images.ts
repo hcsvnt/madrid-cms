@@ -1,10 +1,16 @@
 import { CollectionConfig } from 'payload/types';
 
-const Images: CollectionConfig = {
+export const Images: CollectionConfig = {
     slug: 'images',
     labels: {
         singular: 'Image',
         plural: 'Images',
+    },
+    access: {
+        read: () => true,
+        create: () => true,
+        update: () => true,
+        delete: () => true,
     },
     upload: {
         staticURL: '/assets/images',
@@ -28,6 +34,12 @@ const Images: CollectionConfig = {
             type: 'number',
             defaultValue: 0,
         },
+        {
+            name: 'comments',
+            type: 'relationship',
+            relationTo: 'comments',
+            hasMany: true,
+        },
     ],
     hooks: {
         beforeChange: [
@@ -42,8 +54,6 @@ const Images: CollectionConfig = {
         ],
     },
 };
-
-export default Images;
 
 export function sanitizeFilename(filename) {
     // Remove extension, basic sanitization

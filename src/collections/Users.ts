@@ -1,8 +1,7 @@
 import { CollectionConfig } from 'payload/types';
+import { isAdmin } from '../utils/access';
 
-const isAdmin = ({ req }) => req.user && req.user.role === 'admin';
-
-const Users: CollectionConfig = {
+export const Users: CollectionConfig = {
     slug: 'users',
     auth: true,
     access: {
@@ -42,5 +41,3 @@ const Users: CollectionConfig = {
         },
     ],
 };
-
-export default Users;
