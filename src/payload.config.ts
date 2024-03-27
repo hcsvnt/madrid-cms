@@ -18,6 +18,7 @@ export default buildConfig({
     },
     editor: slateEditor({}),
     collections: [Comments, Images, Pages, Users],
+    defaultDepth: 4,
     typescript: {
         outputFile: path.resolve(__dirname, 'payload-types.ts'),
     },

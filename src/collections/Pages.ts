@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload/types';
 import { isAdmin } from '../utils/access';
 import { hero } from '../fields/Hero';
 import { Gallery } from '../blocks/Gallery';
+import { seo } from '../fields/seo';
 
 export const Pages: CollectionConfig = {
     slug: 'pages',
@@ -41,14 +42,34 @@ export const Pages: CollectionConfig = {
             type: 'tabs',
             tabs: [
                 {
-                    label: 'Page Title',
+                    label: 'Settings',
                     fields: [
                         {
                             name: 'title',
                             type: 'text',
                             required: true,
+                            unique: true,
+                            admin: {
+                                placeholder: 'Home',
+                            },
+                        },
+                        {
+                            name: 'slug',
+                            type: 'text',
+                            required: true,
+                            unique: true,
+                            defaultValue: '/',
+                            index: true,
+                            admin: {
+                                // position: 'sidebar',
+                                placeholder: '/',
+                            },
                         },
                     ],
+                },
+                {
+                    label: 'SEO',
+                    fields: [...seo],
                 },
                 {
                     label: 'Hero',
